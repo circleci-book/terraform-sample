@@ -1,8 +1,14 @@
 version: 2.1
 jobs:
-  install_deps:
+  run_terraform_plan:
     docker:
       - image: hashicorp/terraform
     steps:
       - checkout
       - run: terraform plan
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - run_terraform_plan

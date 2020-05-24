@@ -5,10 +5,12 @@ jobs:
       - image: hashicorp/terraform
     steps:
       - checkout
+      - run: terraform init
       - run: terraform plan
 
 workflows:
   version: 2
   main:
     jobs:
-      - run_terraform_plan
+      - run_terraform_plan:
+          context: terraform-sample

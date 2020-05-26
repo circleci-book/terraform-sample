@@ -8,10 +8,10 @@ jobs:
       - run:
           name: tfnotifyのインストール
           command: |
-            wget https://github.com/mercari/tfnotify/releases/download/v0.6.1/tfnotify_linux_amd64.tar.gz
-            tar zxvf tfnotify_linux_amd64.tar.gz
-            mv tfnotify /usr/local/bin
-     - run:
+              wget https://github.com/mercari/tfnotify/releases/download/v0.6.1/tfnotify_linux_amd64.tar.gz
+              tar zxvf tfnotify_linux_amd64.tar.gz
+              mv tfnotify /usr/local/bin
+      - run:
           name: tfnotifyのテスト
           command: tfnotify
       - run: terraform init

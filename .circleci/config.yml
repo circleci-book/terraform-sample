@@ -15,6 +15,11 @@ jobs:
           name: tfnotifyのテスト
           command: tfnotify
       - run: terraform init
+
+      - run: terraform validate
+
+      - run: terraform fmt -check -diff -recursive
+
       - run: terraform plan
 
 workflows:

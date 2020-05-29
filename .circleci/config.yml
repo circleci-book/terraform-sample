@@ -22,7 +22,7 @@ jobs:
       - run: terraform init
       - run: terraform validate
       - run: terraform fmt -check -diff -recursive
-      - run: terraform plan
+      - run: terraform plan | tee "$TFNOTIFY_LOG"
       - run: tfnotify --config .tfnotify/github.yml plan --title "tfnotify-test" <"$TFNOTIFY_LOG" >/dev/null || true
 
   run_terraform_apply:

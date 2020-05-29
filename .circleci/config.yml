@@ -48,11 +48,14 @@ jobs:
   run_terraform_apply:
     docker:
       - image: hashicorp/terraform
+    environment:
+      TFNOTIFY_LOG: /tmp/tfnotify.log
+
     steps:
       - checkout
       - install-tfnotify
       - run: terraform init
-      - run: terraform apply | tee "$TFNOTIFY_LOG"
+      - run: terraform apply
       - run-tfnotify:
           action: apply
 

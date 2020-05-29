@@ -21,7 +21,7 @@ commands:
             if [ "<< parameters.action >>" = "plan" ]; then
               tfnotify --config .tfnotify/github.yml plan --title "Terraform Plan Output" <"$TFNOTIFY_LOG" >/dev/null || true
             elif [ "<< parameters.action >>" = "apply" ]; then
-              tfnotify --config .tfnotify/github.yml apply --title "Terraform Apply Output" <"$TFNOTIFY_LOG" >/dev/null || true
+              tfnotify --config .tfnotify/slack.yml apply --title "Terraform Apply Output" <"$TFNOTIFY_LOG" >/dev/null || true
             else
               echo "Invalid action: << parameters.action >>"
               exit 1

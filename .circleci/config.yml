@@ -52,7 +52,7 @@ jobs:
       - checkout
       - install-tfnotify
       - run: terraform init
-      - run: terraform apply
+      - run: terraform apply | tee "$TFNOTIFY_LOG"
       - run-tfnotify:
           action: apply
 

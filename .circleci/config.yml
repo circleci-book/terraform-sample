@@ -53,6 +53,8 @@ jobs:
       - install-tfnotify
       - run: terraform init
       - run: terraform apply
+      - run-tfnotify:
+          action: apply
 
 workflows:
   version: 2

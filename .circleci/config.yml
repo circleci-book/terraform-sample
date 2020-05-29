@@ -1,13 +1,29 @@
 version: 2.1
 commands:
   install-tfnotify:
+    description: tfnotifyのインストール
     steps:
       - run:
-          name: tfnotifyのインストール
           command: |
               wget https://github.com/mercari/tfnotify/releases/download/v0.6.1/tfnotify_linux_amd64.tar.gz
               tar zxvf tfnotify_linux_amd64.tar.gz
               mv tfnotify /usr/local/bin
+
+  run-tfnotify:
+    description: tfnotifyの実行
+    parameters:
+      action:
+        type: string
+    steps:
+      - run:
+          name: tfnotifyのインストール
+          command: |
+            if [ << parameters.action >> = "plan" ]; then
+              tfnotify --config .tfnotify/github.yml plan --title "Terraform Plan Output" <"$TFNOTIFY_LOG" >/dev/null || true
+            elsif [ << parameters.action >> = "apply" ]; then
+              tfnotify --config .tfnotify/github.yml apply --title "Terraform Apply Output" <"$TFNOTIFY_LOG" >/dev/null || true
+            fi
+
 
 jobs:
   run_terraform_plan:
@@ -23,7 +39,8 @@ jobs:
       - run: terraform validate
       - run: terraform fmt -check -diff -recursive
       - run: terraform plan | tee "$TFNOTIFY_LOG"
-      - run: tfnotify --config .tfnotify/github.yml plan --title "tfnotify-test" <"$TFNOTIFY_LOG" >/dev/null || true
+      - run-tfnotify:
+          action: plan
 
   run_terraform_apply:
     docker:

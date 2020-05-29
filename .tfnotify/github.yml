@@ -4,8 +4,8 @@ notifier:
   github:
     token: $GITHUB_TOKEN
     repository:
-      owner: "circleci"
-      name: "infrastructure"
+      owner: "circleci-book"
+      name: "terraform-sample"
 terraform:
   fmt:
     template: |

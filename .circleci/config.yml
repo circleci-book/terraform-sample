@@ -1,19 +1,23 @@
 version: 2.1
-jobs:
-  run_terraform_plan:
-    docker:
-      - image: hashicorp/terraform
+commands:
+  install-tfnotify:
     steps:
-      - checkout
       - run:
           name: tfnotifyのインストール
           command: |
               wget https://github.com/mercari/tfnotify/releases/download/v0.6.1/tfnotify_linux_amd64.tar.gz
               tar zxvf tfnotify_linux_amd64.tar.gz
               mv tfnotify /usr/local/bin
-      - run:
-          name: tfnotifyのテスト
-          command: tfnotify
+
+jobs:
+  run_terraform_plan:
+    docker:
+      - image: hashicorp/terraform
+    steps:
+      - checkout
+
+      - install-tfnotify
+
       - run: terraform init
 
       - run: terraform validate
@@ -22,9 +26,27 @@ jobs:
 
       - run: terraform plan
 
+  run_terraform_apply:
+    docker:
+      - image: hashicorp/terraform
+    steps:
+      - checkout
+
+      - install-tfnotify
+
+      - run: terraform init
+
+      - run: terraform apply
+
 workflows:
   version: 2
   main:
     jobs:
       - run_terraform_plan:
           context: terraform-sample
+
+      - run_terraform_apply:
+          context: terraform-sample
+          filters:
+            branches:
+              only: master

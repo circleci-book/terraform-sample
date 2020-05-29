@@ -44,6 +44,9 @@ workflows:
     jobs:
       - run_terraform_plan:
           context: terraform-sample
+          filters:
+            branches:
+              ignore: master
 
       - run_terraform_apply:
           context: terraform-sample

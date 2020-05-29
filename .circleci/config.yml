@@ -13,29 +13,25 @@ jobs:
   run_terraform_plan:
     docker:
       - image: hashicorp/terraform
+    environment:
+      TFNOTIFY_LOG: /tmp/tfnotify.log
+
     steps:
       - checkout
-
       - install-tfnotify
-
       - run: terraform init
-
       - run: terraform validate
-
       - run: terraform fmt -check -diff -recursive
-
       - run: terraform plan
+      - run: tfnotify --config .tfnotify/github.yml plan --title "tfnotify-test" <"$TFNOTIFY_LOG" >/dev/null || true
 
   run_terraform_apply:
     docker:
       - image: hashicorp/terraform
     steps:
       - checkout
-
       - install-tfnotify
-
       - run: terraform init
-
       - run: terraform apply
 
 workflows:

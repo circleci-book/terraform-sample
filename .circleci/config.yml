@@ -18,10 +18,13 @@ commands:
       - run:
           name: tfnotifyのインストール
           command: |
-            if [ << parameters.action >> = "plan" ]; then
+            if [ "<< parameters.action >>" = "plan" ]; then
               tfnotify --config .tfnotify/github.yml plan --title "Terraform Plan Output" <"$TFNOTIFY_LOG" >/dev/null || true
-            elsif [ << parameters.action >> = "apply" ]; then
+            elif [ "<< parameters.action >>" = "apply" ]; then
               tfnotify --config .tfnotify/github.yml apply --title "Terraform Apply Output" <"$TFNOTIFY_LOG" >/dev/null || true
+            else
+              echo "Invalid action: << parameters.action >>"
+              exit 1
             fi
 
 

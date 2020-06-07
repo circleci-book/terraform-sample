@@ -40,7 +40,6 @@ jobs:
       - install-tfnotify
       - run: terraform init
       - run: terraform validate
-      - run: terraform fmt -check -diff -recursive
       - run: terraform plan | tee "$TFNOTIFY_LOG"
       - run-tfnotify:
           action: plan

@@ -16,7 +16,8 @@ commands:
         type: string
     steps:
       - run:
-          name: tfnotifyのインストール
+          name: tfnotifyの実行
+          when: always
           command: |
             if [ "<< parameters.action >>" = "plan" ]; then
               tfnotify --config .tfnotify/github.yml plan --title "Terraform Plan Output" <"$TFNOTIFY_LOG" >/dev/null || true

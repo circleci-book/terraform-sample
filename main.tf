@@ -1,4 +1,3 @@
-# Specify the provider and access details
 provider "aws" {
   region  = "ap-northeast-1"
   profile = "default"
@@ -10,6 +9,22 @@ terraform {
     bucket         = "circleci-book-terraform-sample"
     region         = "ap-northeast-1"
     dynamodb_table = "terraform-state-lock"
+  }
+}
+
+resource "aws_dynamodb_table" "dynamodb-terraform-state-lock" {
+  name = "terraform-state-lock-dynamo"
+  hash_key = "LockID"
+  read_capacity = 20
+  write_capacity = 20
+
+  attribute {
+    name = "LockID"
+    type = "S"
+  }
+
+  tags {
+    Name = "DynamoDB Terraform State Lock Table"
   }
 }
 

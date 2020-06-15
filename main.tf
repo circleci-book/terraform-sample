@@ -33,5 +33,5 @@ resource "aws_instance" "web" {
   instance_type = "m1.small"
   # Ubuntu 19.04 LTS AMI
   ami   = "ami-07547ba969550e510"
-  count = 1
+  count = 2
 }

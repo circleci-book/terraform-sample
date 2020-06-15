@@ -31,7 +31,7 @@ commands:
 
 jobs:
   run_terraform_plan:
-    parallelism: 4
+    parallelism: 2
     docker:
       - image: hashicorp/terraform
     environment:

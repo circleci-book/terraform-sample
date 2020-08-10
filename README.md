@@ -1,3 +1,5 @@
+[![circleci-book](https://circleci.com/gh/circleci-book/terraform-sample.svg?style =svg)](https://app.circleci.com/pipelines/github/circleci-book/terraform-sample)
+
 # Count Example
 
 The count parameter on resources can simplify configurations

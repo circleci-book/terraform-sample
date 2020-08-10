@@ -1,4 +1,4 @@
-[![circleci-book](https://circleci.com/gh/circleci-book/terraform-sample.svg?style =svg)](https://app.circleci.com/pipelines/github/circleci-book/terraform-sample)
+[![circleci-book](https://circleci.com/gh/circleci-book/terraform-sample.svg?style=svg)](https://app.circleci.com/pipelines/github/circleci-book/terraform-sample)
 
 # Count Example
 

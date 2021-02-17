@@ -34,4 +34,7 @@ resource "aws_instance" "web" {
   # Amazon Linux2
   ami   = "ami-0992fc94ca0f1415a"
   count = 1
+  tags = {
+    Name = "EC2 instance terraform"
+  }
 }

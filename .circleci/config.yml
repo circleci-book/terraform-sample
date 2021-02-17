@@ -1,4 +1,4 @@
-version: 2.1
+aversion: 2.1
 commands:
   install-tfnotify:
     description: tfnotifyのインストール

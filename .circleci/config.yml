@@ -41,7 +41,7 @@ jobs:
       - install-tfnotify
       - run: terraform init
       - run: terraform validate
-      - run: terraform plan -lock=false | tee "$TFNOTIFY_LOG"
+      - run: terraform plan  | tee "$TFNOTIFY_LOG"
       - run-tfnotify:
           action: plan
 
@@ -55,7 +55,7 @@ jobs:
       - checkout
       - install-tfnotify
       - run: terraform init
-      - run: terraform apply -auto-approve  -lock=false | tee "$TFNOTIFY_LOG"
+      - run: terraform apply -auto-approve   | tee "$TFNOTIFY_LOG"
       - run-tfnotify:
           action: apply
 

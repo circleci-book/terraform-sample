@@ -4,7 +4,7 @@ notifier:
   github:
     token: $GITHUB_TOKEN
     repository:
-      owner: "circleci-book"
+      owner: "Yuhta28"
       name: "terraform-sample"
 terraform:
   plan:
